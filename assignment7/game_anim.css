@@ -1,0 +1,8 @@
+#start{
+  cursor: pointer;
+  transition: background-color 0.5s,color 0.5s;
+}
+#start:hover {
+  background-color: rgb(174, 171, 171);
+  color: black;
+}

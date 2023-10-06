@@ -1,0 +1,9 @@
+#login_button,#clear_button
+{
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+#login_button:hover,#clear_button:hover
+{
+  background-color: rgb(241, 199, 115);
+}

@@ -1,0 +1,9 @@
+#submit_button,#reset_button
+{
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+#submit_button:hover,#reset_button:hover
+{
+  background-color: rgb(241, 199, 115);
+}
