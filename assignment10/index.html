@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Chitchat</title>
+		<link type="text/css" rel="stylesheet" href="style.css" />
+		<script type="text/javascript" src="chatter.js"></script>
+	</head>
+	<body>
+		
+		<!-- the code was adapted from https://code.tutsplus.com/tutorials/how-to-create-a-simple-web-based-chat-application--net-5931 -->
+		<div id="loginform">
+			<span>Username: </span><input type="text" id="userInput" value="">
+			<button id="clickok">OK</button>
+		</div>
+		<div id="wrapper">
+		    <div id="menu">
+		        <p class="welcome">Welcome, <span id="username"></span></p>
+		        
+		    </div>
+		     
+		    <div id="chatbox"></div>
+		     
+		    
+	        <input name="userMsg" type="text" id="userMsg" size="63" />
+	        <button id="submitmsg" disabled>Send</button>
+		    
+		</div>
+	</body>
+	
+</html>

@@ -53,6 +53,7 @@ let editJson = (data) => {
         data1[keys[i]]["stock"] = stock[keys[i]];
       }
       resolve(JSON.stringify(data1));
+      console.log("pass edit");
     })
   
 
