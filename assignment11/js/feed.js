@@ -33,10 +33,11 @@ function pageLoad(){
 	readPost();
 }
 
-function getData(){
+async function getData(){
 	var msg = document.getElementById("textmsg").value;
 	document.getElementById("textmsg").value = "";
-	writePost(msg);
+	await writePost(msg);
+  await readPost();
 }
 
 function fileUpload(){
@@ -61,14 +62,29 @@ function showImg(filename){
 // อ่าน post จาก file
 // complete it
 async function readPost(){
-	
+	let readtxt =  await fetch("/readPost");
+  let showcontent = await readtxt.json();
+  showPost(showcontent);
 }
 
 // เขียน post ใหม่ ลงไปใน file
 // complete it
 async function writePost(msg){
-	
-}
+	let response = await fetch('/writePost',{
+    method:"POST",
+    headers:{
+       Accept: 'application/json',
+      'Content-Type':'aplication/json'
+    },
+    body: JSON.stringify({
+      user:getCookie("username"),
+      message:msg
+    }),
+  });
+
+  }
+  
+
 
 // แสดง post ที่อ่านมาได้ ลงในพื้นที่ที่กำหนด
 function showPost(data){
