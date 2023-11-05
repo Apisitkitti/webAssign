@@ -26,7 +26,7 @@ function pageLoad(){
 	document.getElementById('fileField').onchange = fileSubmit;
 	
 	var username = getCookie('username');
-
+  var timer = null;
 	document.getElementById("username").innerHTML = username;
 	console.log(getCookie('img'));
 	showImg('img/'+getCookie('img'));
@@ -34,12 +34,15 @@ function pageLoad(){
 }
 
 async function getData(){
+  timer = setInterval (ReadPostREfresh,3000);
 	var msg = document.getElementById("textmsg").value;
 	document.getElementById("textmsg").value = "";
-	await writePost(msg);
   await readPost();
+  await writePost(msg);
 }
-
+function ReadPostREfresh(){
+  readPost()
+}
 function fileUpload(){
 	document.getElementById('fileField').click();
 }
@@ -70,15 +73,16 @@ async function readPost(){
 // เขียน post ใหม่ ลงไปใน file
 // complete it
 async function writePost(msg){
+  console.log(getCookie("username"));
 	let response = await fetch('/writePost',{
     method:"POST",
     headers:{
        Accept: 'application/json',
-      'Content-Type':'aplication/json'
+      'Content-Type':'application/json'
     },
     body: JSON.stringify({
       user:getCookie("username"),
-      message:msg
+      message:msg,
     }),
   });
 

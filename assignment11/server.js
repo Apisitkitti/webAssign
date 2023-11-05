@@ -51,15 +51,16 @@ app.get('/logout', (req,res) => {
 //ทำให้สมบูรณ์
 app.get('/readPost', async (req,res) => {
     const WaitForReadFIle  = await readJson('js/postDB.json');
-    var ChangeFile = JSON.parse(WaitForReadFIle);
-    res.send(ChangeFile);
+    console.log('read post pass in get');
+    res.send(WaitForReadFIle);
 })
 
 //ทำให้สมบูรณ์
 app.post('/writePost',async (req,res) => {
   const WaitForReadFIle  = await readJson('js/postDB.json');
-  var ChangeFile = JSON.parse(WaitForReadFIle);
-  const postUpload = await updateMsg(req.body,ChangeFile,'js/postDB.json')
+  console.log(req.body)
+  const postUpload = await updateMsg(req.body,WaitForReadFIle,'js/postDB.json')
+  console.log('write post pass in app post');
   res.send(postUpload);
 })
 
@@ -114,12 +115,12 @@ const updateMsg = (new_msg, data, file_name) => {
   return new Promise((resolve) => { 
      const FileRead = JSON.parse(data);
      var keys = Object.keys(FileRead);
-     data['post'+ [keys.length+1]] = {
+     FileRead["post"+ [keys.length+1]] = {
       user:new_msg.user,
       message:new_msg.message,
      };
      console.log("update fininsh");
-     resolve(writeJson(JSON.stringify(data),file_name));
+     resolve(writeJson(JSON.stringify(FileRead),file_name));
   });
 }
 
@@ -135,8 +136,8 @@ const writeJson = (data,file_name) => {
         }
         else
         {
-          resolve(data);
           console.log("Write Post Pass");
+          resolve(data);
         }
       });
     })
