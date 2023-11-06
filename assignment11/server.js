@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 const multer = require('multer');
 const path = require('path');
-const { promises } = require('dns');
+const { promises, resolve } = require('dns');
 const { rejects } = require('assert');
 
 app.use(express.static(__dirname));
@@ -35,16 +35,34 @@ const storage = multer.diskStorage({
 };
 
 //ทำให้สมบูรณ์
-app.post('/profilepic', (req,res) => {
-    
+app.post('/profilepic',async (req,res) => {
+    const ReadFile = await readJson('js/userDB.json');
+    let upload = multer({ storage: storage, fileFilter:imageFilter}).single('avatar');
+    upload(req,res,(err)=>{
+    if(req.fileValidationError) {
+       return res.send(req.fileValidationError);
+    }
+    else if(!req.file){
+      return res.send('Pls select an image to upload');
+    }
+    else if (err instanceof multer.MulterError){
+      return res.send(err);
+    }
+    else if(err){
+      return res.send(err);
+    }
+    updateImg(req.cookies.username,req.file.filename,JSON.parse(ReadFile),'js/userDB.json')
+    res.cookie('img',req.file.filename);
     return res.redirect('feed.html')
- })
+ });
+})
 
 //ทำให้สมบูรณ์
 // ถ้าต้องการจะลบ cookie ให้ใช้
 // res.clearCookie('username');
 app.get('/logout', (req,res) => {
     res.clearCookie('username');
+    res.clearCookie('img');
     return res.redirect('index.html');
 })
 
@@ -144,7 +162,21 @@ const writeJson = (data,file_name) => {
 };
 
 //ทำให้สมบูรณ์
-const updateImg = async (username, fileimg) => {
+const updateImg = async (username, fileimg,data, file_name) => {
+    return new Promise((resolve) => {
+    var keys = Object.keys(data);
+    for(var imageData = 0; imageData<keys.length;imageData++)
+    {
+    
+      if(data[keys[imageData]].username == username)
+      {
+        data[keys[imageData]].img = fileimg;
+        break;
+      }
+    }
+    resolve(writeJson(JSON.stringify(data),file_name));
+    });
+    
     
 }
 

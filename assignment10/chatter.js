@@ -20,7 +20,7 @@ function setUsername(){
 	 username = x.value;
 	var x = document.getElementById("username");
 	x.innerHTML = username;
-	timer = setInterval (loadLog, 3000);//Reload file every 3000 ms
+	timer = setInterval (loadLog, 1000);
 	document.getElementById("submitmsg").disabled = false;
 	document.getElementById("clickok").disabled = true;
 	readLog();
