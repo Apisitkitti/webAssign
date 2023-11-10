@@ -23,7 +23,6 @@ function pageLoad(){
 	document.getElementById('postbutton').onclick = getData;
 	document.getElementById('displayPic').onclick = fileUpload;
 	document.getElementById('fileField').onchange = fileSubmit;
-	
 	var username = getCookie('username');
   var timer = null;
 	document.getElementById("username").innerHTML = username;
