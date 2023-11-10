@@ -74,7 +74,7 @@ async function writePost(msg){
     method:"POST",
     headers:{
        Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type':'application/json'
     },
     body: JSON.stringify({
       user:getCookie("username"),
@@ -95,12 +95,12 @@ function showPost(data){
 		divTag.appendChild(temp);
 		var temp1 = document.createElement("div");
 		temp1.className = "postmsg";
-		temp1.innerHTML = data[keys[i]]["message"];
+		temp1.innerHTML = data[keys[i]]["post"];
 		temp.appendChild(temp1);
 		var temp1 = document.createElement("div");
 		temp1.className = "postuser";
 		
-		temp1.innerHTML = "Posted by: "+data[keys[i]]["user"];
+		temp1.innerHTML = "Posted by: "+data[keys[i]]["username"];
 		temp.appendChild(temp1);
 		
 	}

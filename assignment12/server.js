@@ -67,9 +67,10 @@ app.post('/regisDB', async (req,res) => {
     let now_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
     let sql = "CREATE TABLE IF NOT EXISTS userInfo (id INT AUTO_INCREMENT PRIMARY KEY, reg_date TIMESTAMP, username VARCHAR(255), email VARCHAR(100),password VARCHAR(100),img VARCHAR(100))";
     let result = await queryDB(sql);
-    sql = `INSERT INTO userInfo (reg_date,username, email, password,img) VALUES ("${now_date}","${req.body.user}","${req.body.email}","${req.body.password}","avartar.png")`;
+    sql = `INSERT INTO userInfo (reg_date,username, email, password,img) VALUES ("${now_date}","${req.body.username}","${req.body.email}","${req.body.password}","avartar.png")`;
     result = await queryDB(sql);
     console.log("New ID ADD now");
+    console.log(result);
     return res.redirect('feed.html');
     
 })
@@ -94,7 +95,7 @@ app.post('/profilepic', (req,res) => {
     {
       return res.send(err);
     }
-    updateImg(req.cookies.user,req.file.filename)
+    updateImg(req.cookies.username,req.file.filename)
     res.cookie('img',req.file.filename);
     return res.redirect('feed.html');
   })
@@ -146,7 +147,7 @@ app.post('/checkLogin',async (req,res) => {
   var keys = Object.keys(result);
     for(var key_counter = 0; key_counter < keys.length; key_counter++ )
     {
-      if(req.body.user == result[keys[key_counter]].username &&
+      if(req.body.username == result[keys[key_counter]].username &&
          req.body.password == result[keys[key_counter]].password)
       {
         checker = true;
