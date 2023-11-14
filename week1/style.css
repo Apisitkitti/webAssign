@@ -1,0 +1,82 @@
+* {
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #0C356A;
+}
+
+.head {
+    color: black;
+    border: 5px solid black;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #279EFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0 0 10px black;
+    
+
+}
+
+#My {
+    text-align: center;
+    font-size: large;
+    border: 5px solid black;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #279EFF; 
+    font-size: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0 0 10px black;
+}
+
+.Picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px dashed black;
+    border-radius: 100px;
+    box-shadow: 0 0 20px black;
+    width:500px;
+    height:500px;
+    
+}
+
+.link {
+
+    text-align: center;
+
+}
+
+.Name,.Thai-name {
+    display: inline-block;
+    background-color: #D5FFD0;
+    padding: 10px 10px 10px 20px;
+    width: 260px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    margin-bottom: 0 ;
+
+}
+.Thai-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+.Hobby,.Skill,.Interest
+{
+  background-color: #40F8FF ;
+  padding: 5px 10px 5px 10px;
+  width: 200px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+ 
+}
+.Hobby ol,.Skill ol,.Interest ol
+{
+ margin-bottom: 5px;
+
+}
