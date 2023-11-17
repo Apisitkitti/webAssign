@@ -37,8 +37,8 @@ async function getData(){
   timer = setInterval(1000,Refresh());
 	var msg = document.getElementById("textmsg").value;
 	document.getElementById("textmsg").value = "";
+  await writePost(msg);
   await readPost();
-	await writePost(msg);
 }
 
 function fileUpload(){
@@ -80,6 +80,7 @@ async function writePost(msg){
       message: msg,
     }),
   });
+  
 }
 
 // แสดง post ที่อ่านมาได้ ลงในพื้นที่ที่กำหนด

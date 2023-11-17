@@ -135,7 +135,8 @@ app.post('/writePost',async (req,res) => {
   result = await queryDB(sql);
   console.log("post pass");
   console.log(result);
-  res.redirect("feed.html");
+  return res.redirect("feed.html");
+
 })
 
 //ทำให้สมบูรณ์
